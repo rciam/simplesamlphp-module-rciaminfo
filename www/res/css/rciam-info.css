@@ -1,0 +1,22 @@
+h2 {
+  padding: 2rem;
+  text-align: center;
+  background: white;
+  color: #5b5b5b;
+  font-size: 22px;
+  font-weight: 250;
+  border-bottom: 1px solid #333333;
+}
+
+table#rciam_info.dataTable tbody tr:hover {
+  background-color: #E0E0E0;
+}
+
+table#rciam_info.dataTable tbody tr:hover > .sorting_1 {
+  background-color: #E0E0E0;
+}
+
+.container {
+  /*We need to disable this, for the CSS templates tha apply a fixed length property, and let the plugin handle it.*/
+  height: unset !important;
+}
