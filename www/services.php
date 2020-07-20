@@ -12,7 +12,7 @@
 $config = SimpleSAML_Configuration::getInstance();
 // Get module config
 $rciamInfoConfig = SimpleSAML_Configuration::getConfig('module_rciaminfo.php');
-$serviceStoreConfig = $rciamInfoConfig->getArray('store');
+$serviceStoreConfig = $rciamInfoConfig->getArray('store', null);
 $serviceIdExcludeList = $rciamInfoConfig->getArray('serviceIdExcludeList', []);
 $metadataSrcExcludeList = $rciamInfoConfig->getArray('metadataSrcExcludeList', []);
 
