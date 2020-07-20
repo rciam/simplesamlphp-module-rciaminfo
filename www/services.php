@@ -15,6 +15,7 @@ $rciamInfoConfig = SimpleSAML_Configuration::getConfig('module_rciaminfo.php');
 $serviceStoreConfig = $rciamInfoConfig->getArray('store', null);
 $serviceIdExcludeList = $rciamInfoConfig->getArray('serviceIdExcludeList', []);
 $metadataSrcExcludeList = $rciamInfoConfig->getArray('metadataSrcExcludeList', []);
+$tableConfig = $rciamInfoConfig->getArray('infoConfig', []);
 
 $serviceStore = new sspmod_rciaminfo_Service_Store_Database($serviceStoreConfig);
 
@@ -115,5 +116,9 @@ function compareByName($a, $b) {
 usort($serviceList, 'compareByName');
 
 $template->data['serviceList'] = $serviceList;
+if(empty($tableConfig['table'])) {
+  $tableConfig['table']['length'] = 10;
+}
+$template->data['table_len'] = $tableConfig['table']['length'];
 
 $template->show();

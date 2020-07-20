@@ -95,5 +95,26 @@ $config = [
     'metadataSrcExcludeList' => [
         'https://example.org-spMeta.xml',
     ],
- 
+
+    /*
+     * List of Configurations relative to Info presentation
+     * @default []
+     */
+    'infoConfig' => [
+
+      /*
+       * List of onfigurations for the info table
+       * @default []
+       */
+
+      'table' => [
+
+        /*
+         * Number of rows visible per Table page
+         * @default 10
+         */
+
+        'length' => 10
+      ],
+    ],
 ];

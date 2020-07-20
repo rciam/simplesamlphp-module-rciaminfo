@@ -28,3 +28,5 @@ Network Trash Folder
 Temporary Items
 .apdisk
 # END macOS.gitignore
+
+.idea/*
