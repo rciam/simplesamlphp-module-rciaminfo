@@ -1,0 +1,23 @@
+{
+	"services_header": {
+		"en": "Connected Services"
+	},
+	"service_header_name": {
+		"en": "Service Name"
+	},
+	"service_header_description": {
+		"en": "Description"
+	},
+	"service_header_privacy": {
+		"en": "Privacy Statement"
+	},
+	"service_empty_name": {
+		"en": "(not available)"
+	},
+	"service_empty_description": {
+		"en": "(not available)"
+	},
+	"service_empty_privacy": {
+		"en": "(not available)"
+	}
+}
