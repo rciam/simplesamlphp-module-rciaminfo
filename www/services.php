@@ -9,26 +9,26 @@
  */
 
 // Get global config
-$config = SimpleSAML_Configuration::getInstance();
+$config = \SimpleSAML\Configuration::getInstance();
 // Get module config
-$rciamInfoConfig = SimpleSAML_Configuration::getConfig('module_rciaminfo.php');
+$rciamInfoConfig = \SimpleSAML\Configuration::getConfig('module_rciaminfo.php');
 $serviceStoreConfig = $rciamInfoConfig->getArray('store', null);
 $serviceIdExcludeList = $rciamInfoConfig->getArray('serviceIdExcludeList', []);
 $metadataSrcExcludeList = $rciamInfoConfig->getArray('metadataSrcExcludeList', []);
 $tableConfig = $rciamInfoConfig->getArray('infoConfig', []);
 
-$serviceStore = new sspmod_rciaminfo_Service_Store_Database($serviceStoreConfig);
+$serviceStore = new \SimpleSAML\Module\rciaminfo\Service\Store\Database($serviceStoreConfig);
 
-SimpleSAML_Logger::debug('[rciaminfo:services] Initialising');
+\SimpleSAML\Logger::debug('[rciaminfo:services] Initialising');
 
 // Init template
-$template = new SimpleSAML_XHTML_Template($config, 'rciaminfo:services.php');
+$template = new \SimpleSAML\XHTML\Template($config, 'rciaminfo:services.php');
 
 $serviceList = [];
 
 // Get SAML SP information
 // Get metadata storage handler
-$metadataHandler = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
+$metadataHandler = \SimpleSAML\Metadata\MetaDataStorageHandler::getMetadataHandler();
 $spMetadataList = $metadataHandler->getList('saml20-sp-remote');
 foreach ($spMetadataList as $spMetadata) {
     if (empty($spMetadata['entityid'])) {
@@ -38,12 +38,12 @@ foreach ($spMetadataList as $spMetadata) {
 
     // Check if service needs to be excluded based on ID
     if (!empty($serviceIdExcludeList) && in_array($serviceId, $serviceIdExcludeList)) {
-        SimpleSAML_Logger::info('[rciaminfo:services] Excluding SAML SP with entityID ' . $serviceId);
+        \SimpleSAML\Logger::info('[rciaminfo:services] Excluding SAML SP with entityID ' . $serviceId);
         continue; 
     }
     // Check if service needs to be excluded based on metadata source
     if (!empty($metadataSrcExcludeList) && !empty($spMetadata['metarefresh:src']) && in_array($spMetadata['metarefresh:src'], $metadataSrcExcludeList)) {
-        SimpleSAML_Logger::info('[rciaminfo:services] Excluding SAML SP with entityID ' . $serviceId);
+        \SimpleSAML\Logger::info('[rciaminfo:services] Excluding SAML SP with entityID ' . $serviceId);
         continue; 
     }
 
@@ -98,7 +98,7 @@ foreach ($clientList as $client) {
 
     // Check if service needs to be excluded based on ID
     if (!empty($serviceIdExcludeList) && in_array($client['client_id'], $serviceIdExcludeList)) {
-        SimpleSAML_Logger::info('[rciaminfo:services] Excluding OIDC client with ID ' . $client['client_id']);
+        \SimpleSAML\Logger::info('[rciaminfo:services] Excluding OIDC client with ID ' . $client['client_id']);
         continue; 
     }
 
@@ -107,7 +107,7 @@ foreach ($clientList as $client) {
         'description'         => $client['client_description'],
         'privacyStatementURL' => $client['policy_uri'],
     ];
-    SimpleSAML_Logger::debug('[rciaminfo:services] Including OIDC client with ID ' . $client['client_id']);
+    \SimpleSAML\Logger::debug('[rciaminfo:services] Including OIDC client with ID ' . $client['client_id']);
 }
 
 function compareByName($a, $b) {
