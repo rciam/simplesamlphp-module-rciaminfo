@@ -3,8 +3,9 @@
 namespace SimpleSAML\Module\rciaminfo\Service\Store;
 
 use Exception;
+use PDO;
 use SimpleSAML\Configuration;
-use SimpleSAML\Database;
+use SimpleSAML\Database as SimpleSAMLDatabase;
 
 /**
  * This class retrieves service information stored in a database. 
@@ -60,7 +61,7 @@ class Database
             }
 	    $pdoConfig = Configuration::loadFromArray($config['pdo']);
         }
-        $this->db = Database::getInstance($pdoConfig);
+        $this->db = SimpleSAMLDatabase::getInstance($pdoConfig);
     }
 
     /**
