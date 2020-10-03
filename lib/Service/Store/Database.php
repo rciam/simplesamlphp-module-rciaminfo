@@ -1,4 +1,11 @@
 <?php
+
+namespace SimpleSAML\Module\rciaminfo\Service\Store;
+
+use Exception;
+use SimpleSAML\Configuration;
+use SimpleSAML\Database;
+
 /**
  * This class retrieves service information stored in a database. 
  * It should work against PostgreSQL, MySQL and SQLite.
@@ -12,7 +19,7 @@
  *
  * @author  Nicolas Liampotis <nliam@grnet.gr>
  */
-class sspmod_rciaminfo_Service_Store_Database
+class Database
 {
     /**
      * Table with service information.
@@ -51,9 +58,9 @@ class sspmod_rciaminfo_Service_Store_Database
                     'rciaminfo:Service:Store:Database - \'store.pdo\' must be an array.'
                 );
             }
-	    $pdoConfig = SimpleSAML_Configuration::loadFromArray($config['pdo']);
+	    $pdoConfig = Configuration::loadFromArray($config['pdo']);
         }
-        $this->db = SimpleSAML\Database::getInstance($pdoConfig);
+        $this->db = Database::getInstance($pdoConfig);
     }
 
     /**
